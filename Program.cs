@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using notification_service.database;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Serviços
 builder.Services.AddControllers();
